@@ -29,9 +29,9 @@ public:
         count++;
     }
     int pop() {
-        if (empty()) {
-            cerr << "Stack Underflow\n";
-            exit(1);
+        if (head == nullptr) {  // stack underflow
+            cout << "Stack Underflow\n";
+            return -1;           // return -1 to indicate error
         }
         int value = head->data;
         Node* temp = head;
@@ -41,9 +41,9 @@ public:
         return value;
     }
     int top() {
-        if (empty()) {
-            cerr << "Stack is empty\n";
-            exit(1);
+        if (head == nullptr) {  // stack is empty
+            cout << "Stack is empty\n";
+            return -1;           // return -1 to indicate error
         }
         return head->data;
     }
@@ -60,7 +60,8 @@ bool isOperator(char c) {
 }
 int evaluatePostfix(const string& expr) {
     Stack s;
-    for (char c : expr) {
+    for (int i = 0; i < expr.length(); i++) {
+        char c = expr[i];
         if (isdigit(c)) {
             s.push(c - '0');
         } else if (isOperator(c)) {
