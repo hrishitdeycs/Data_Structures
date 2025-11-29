@@ -23,9 +23,9 @@ public:
         count = 0;
     }
     void push(int value) {
-        Node* newNode = new Node(value);
-        newNode->next = head;
-        head = newNode;
+        Node* n = new Node(value);
+        n->next = head;
+        head = n;
         count++;
     }
     int pop() {
