@@ -1,18 +1,23 @@
 #include <iostream>
 using namespace std;
-struct Node {
+class Node {
+public:
     int data;
     Node* left;
     Node* right;
+    // Constructor to initialize a node
+    Node(int x) {
+        data = x;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 class BST {
 private:
     Node* root;
+
     Node* createNode(int x) {
-        Node* newNode = new Node();
-        newNode->data = x;
-        newNode->left = newNode->right = nullptr;
-        return newNode;
+        return new Node(x);
     }
     Node* insertNode(Node* node, int x) {
         if (node == nullptr)
@@ -96,17 +101,17 @@ int main() {
     bst.insert(60);
     bst.insert(80);
     cout << "Inorder traversal: ";
-    bst.displayInorder();      // Should display 20 30 40 50 60 70 80
+    bst.displayInorder();      // 20 30 40 50 60 70 80
     cout << "Preorder traversal: ";
-    bst.displayPreorder();     // Should display 50 30 20 40 70 60 80
+    bst.displayPreorder();     // 50 30 20 40 70 60 80
     cout << "Postorder traversal: ";
-    bst.displayPostorder();    // Should display 20 40 30 60 80 70 50
+    bst.displayPostorder();    // 20 40 30 60 80 70 50
     cout << "Searching 40: " << (bst.search(40) ? "Found" : "Not Found") << endl;
     cout << "Searching 90: " << (bst.search(90) ? "Found" : "Not Found") << endl;
     bst.remove(20); // Leaf node
     bst.remove(30); // Node with one child
     bst.remove(50); // Node with two children
     cout << "Inorder traversal after deletions: ";
-    bst.displayInorder();      
+    bst.displayInorder();
     return 0;
 }
